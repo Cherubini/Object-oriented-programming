@@ -1,12 +1,18 @@
-class Student{
+class Student extends Person{
 
-    constructor(name, surname, yob, grades){
-        this.name =name;
-        this.surname=surname;
-        this.yob=yob;
-        this.grades=grades;
+    constructor(name, surname, yob, grades = []){
+        super(name,surname, yob);
+        this._grades=grades;
     }
+
+    get grades(){
+    return this._grades;
+    }
+
     calculateMean(){
+        if (this.grades.length===0) {
+            return -1;            
+        }
         let sum=0;
         const grades = this.grades;
         for (let i = 0; i < grades.length; i++) {
@@ -22,15 +28,8 @@ class Student{
  * 
  */
     toString(){
-        let str=`NOME: ${this.name} \nCOGNOME: ${this.surname}\nETA': ${this.calculateAge()}\nMEDIA: ${this.calculateMean()}`
-        return str;
-    }
-
-    calculateAge(){
-        const date=new Date();
-        let year=date.getFullYear();
-        let age=year-this.yob;
-        return age;
+        let str=`MEDIA: ${this.calculateMean()}`
+        return super.toString()+str;
     }
 
 }

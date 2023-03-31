@@ -1,11 +1,9 @@
 
-class Teacher {
+class Teacher extends Person{
 
     constructor (name, surname, yob, students)
         {
-        this.name =name;
-        this.surname=surname;
-        this.yob=yob;
+        super(name,surname,yob);
         this.students=students;
         }
 
@@ -29,14 +27,7 @@ class Teacher {
  * 
  */
     toString(){
-        let str=`NOME: ${this.name} \nCOGNOME: ${this.surname}\nETA': ${this.calculateAge()}\nMIGLIOR STUDENTE: ${this.findBestStudent().name} ${this.findBestStudent().surname}`
-        return str;
-    }
-    
-    calculateAge(){
-        const date=new Date();
-        let year=date.getFullYear();
-        let age=year-this.yob;
-        return age;
+        let str=`MIGLIOR STUDENTE: ${this.findBestStudent().name} ${this.findBestStudent().surname}`
+        return super.toString() + str;
     }
 }
